@@ -113,7 +113,7 @@ mysql -u root -p -e "SET GLOBAL local_infile = 1;"
 
 create the procedure:
 
-mysql -u root -p < /Users/prabhavihemachandra/Desktop/DataAnalyst_Portfolio/rocedure.sql
+mysql -u root -p < /Users/prabhavihemachandra/Desktop/DataAnalyst_Portfolio/procedure.sql
 
 Every time you want to load data:
 mysql -u root -p --local-infile=1 < /Users/prabhavihemachandra/Desktop/DataAnalyst_Portfolio/data_load.sql
