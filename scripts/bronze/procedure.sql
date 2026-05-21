@@ -29,23 +29,25 @@ CALL bronze.load_bronze ();
 
 DROP PROCEDURE IF EXISTS bronze.load_bronze;
 
+DELIMITER $$
+
 CREATE PROCEDURE bronze.load_bronze()
 BEGIN
     DECLARE v_error_msg VARCHAR(500);
     DECLARE v_error_state VARCHAR(10);
     DECLARE v_error_code INT;
-   
+
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         GET DIAGNOSTICS CONDITION 1
-            v_error_msg   = MESSAGE_TEXT ,
-            v_error_state = RETURNED_SQLSTATE ,
-            v_error_code = MySQL_ERRNO ;
+            v_error_msg   = MESSAGE_TEXT,
+            v_error_state = RETURNED_SQLSTATE,
+            v_error_code  = MYSQL_ERRNO;
         SELECT '=============================' AS '';
-        SELECT 'ERROR OCCURED DURING LOADING BRONZE LAYER' AS '';
-        SELECT CONCAT('Error Message :',v_error_msg) AS '';
-        SELECT CONCAT('Error Number :', v_error_code) AS '' ;
-        SELECT CONCAT('Error State :', v_error_state) AS '' ;
+        SELECT 'ERROR OCCURRED DURING LOADING BRONZE LAYER' AS '';
+        SELECT CONCAT('Error Message :', v_error_msg) AS '';
+        SELECT CONCAT('Error Number :', v_error_code) AS '';
+        SELECT CONCAT('Error State :', v_error_state) AS '';
         SELECT '=============================' AS '';
     END;
 
@@ -56,27 +58,28 @@ BEGIN
     SELECT '============================' AS '';
     SELECT 'Loading CRM Tables' AS '';
     SELECT '============================' AS '';
-   
+
     SELECT '>>Truncating Table: bronze.crm_cust_info' AS '';
     TRUNCATE TABLE bronze.crm_cust_info;
-    
+
     SELECT '>>Truncating Table: bronze.crm_prd_info' AS '';
     TRUNCATE TABLE bronze.crm_prd_info;
-  
+
     SELECT '>>Truncating Table: bronze.crm_sales_details' AS '';
     TRUNCATE TABLE bronze.crm_sales_details;
-    
+
     SELECT '============================' AS '';
-    SELECT 'Loading ERP Tables ' AS '';
+    SELECT 'Loading ERP Tables' AS '';
     SELECT '============================' AS '';
-    
+
     SELECT '>>Truncating Table: bronze.erp_cust_az12' AS '';
     TRUNCATE TABLE bronze.erp_cust_az12;
-   
+
     SELECT '>>Truncating Table: bronze.erp_loc_a101' AS '';
     TRUNCATE TABLE bronze.erp_loc_a101;
-    
+
     SELECT '>>Truncating Table: bronze.erp_px_cat_g1v2' AS '';
     TRUNCATE TABLE bronze.erp_px_cat_g1v2;
-END;
+END$$
 
+DELIMITER ;
