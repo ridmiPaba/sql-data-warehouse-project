@@ -27,9 +27,7 @@ CALL bronze.load_bronze ();
 -- So we temporarily change the end signal from ; to $$ while creating the procedure
 
 
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS bronze.load_bronze$$
+DROP PROCEDURE IF EXISTS bronze.load_bronze;
 
 CREATE PROCEDURE bronze.load_bronze()
 BEGIN
@@ -49,7 +47,6 @@ BEGIN
         SELECT CONCAT('Error Number :', v_error_code) AS '' ;
         SELECT CONCAT('Error State :', v_error_state) AS '' ;
         SELECT '=============================' AS '';
-
     END;
 
     SELECT '============================' AS '';
@@ -57,9 +54,8 @@ BEGIN
     SELECT '============================' AS '';
 
     SELECT '============================' AS '';
-    SELECT'Loading CRM Tables' AS '';
+    SELECT 'Loading CRM Tables' AS '';
     SELECT '============================' AS '';
-
    
     SELECT '>>Truncating Table: bronze.crm_cust_info' AS '';
     TRUNCATE TABLE bronze.crm_cust_info;
@@ -70,23 +66,18 @@ BEGIN
     SELECT '>>Truncating Table: bronze.crm_sales_details' AS '';
     TRUNCATE TABLE bronze.crm_sales_details;
     
-
-    SELECT'============================' AS '';
+    SELECT '============================' AS '';
     SELECT 'Loading ERP Tables ' AS '';
     SELECT '============================' AS '';
     
-   
     SELECT '>>Truncating Table: bronze.erp_cust_az12' AS '';
     TRUNCATE TABLE bronze.erp_cust_az12;
-   
    
     SELECT '>>Truncating Table: bronze.erp_loc_a101' AS '';
     TRUNCATE TABLE bronze.erp_loc_a101;
     
-   
     SELECT '>>Truncating Table: bronze.erp_px_cat_g1v2' AS '';
     TRUNCATE TABLE bronze.erp_px_cat_g1v2;
-   
-END$$      -- End of procedure
+END;
 
 DELIMITER ; -- Change back to normal semicolon
