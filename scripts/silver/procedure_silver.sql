@@ -32,9 +32,7 @@ CALL silver.load_silver();
 -- So we temporarily change the end signal from ; to $$ while creating the procedure
 
 
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS silver.load_silver$$
+DROP PROCEDURE IF EXISTS silver.load_silver;
 
 CREATE PROCEDURE silver.load_silver()
 BEGIN
@@ -54,7 +52,6 @@ BEGIN
         SELECT CONCAT('Error Number :', v_error_code) AS '' ;
         SELECT CONCAT('Error State :', v_error_state) AS '' ;
         SELECT '=============================' AS '';
-
     END;
 
     SELECT '============================' AS '';
@@ -62,9 +59,8 @@ BEGIN
     SELECT '============================' AS '';
 
     SELECT '============================' AS '';
-    SELECT'Loading CRM Tables' AS '';
+    SELECT 'Loading CRM Tables' AS '';
     SELECT '============================' AS '';
-
    
     SELECT '>>Truncating Table: silver.crm_cust_info' AS '';
     TRUNCATE TABLE silver.crm_cust_info;
@@ -75,23 +71,17 @@ BEGIN
     SELECT '>>Truncating Table: silver.crm_sales_details' AS '';
     TRUNCATE TABLE silver.crm_sales_details;
     
-
-    SELECT'============================' AS '';
+    SELECT '============================' AS '';
     SELECT 'Loading ERP Tables ' AS '';
     SELECT '============================' AS '';
     
-   
     SELECT '>>Truncating Table: silver.erp_cust_az12' AS '';
     TRUNCATE TABLE silver.erp_cust_az12;
-   
    
     SELECT '>>Truncating Table: silver.erp_loc_a101' AS '';
     TRUNCATE TABLE silver.erp_loc_a101;
     
-   
     SELECT '>>Truncating Table: silver.erp_px_cat_g1v2' AS '';
     TRUNCATE TABLE silver.erp_px_cat_g1v2;
-   
-END$$      -- End of procedure
+END;
 
-DELIMITER ; -- Change back to normal semicolon
