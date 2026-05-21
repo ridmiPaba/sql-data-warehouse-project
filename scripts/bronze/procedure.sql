@@ -80,4 +80,3 @@ BEGIN
     TRUNCATE TABLE bronze.erp_px_cat_g1v2;
 END;
 
-DELIMITER ; -- Change back to normal semicolon
