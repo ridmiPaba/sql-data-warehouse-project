@@ -225,7 +225,7 @@ BEGIN
         CASE
             WHEN REPLACE(REPLACE(TRIM(cntry), '\r', ''), '\n', '') = 'DE' THEN 'Germany'
             WHEN REPLACE(REPLACE(TRIM(cntry), '\r', ''), '\n', '') IN ('US', 'USA') THEN 'United States'
-            WHEN cntry IS NULL OR TRIM(cntry) = '' THEN 'n/a'
+            WHEN cntry IS NULL OR REPLACE(REPLACE(TRIM(cntry), '\r', ''), '\n', '') = '' THEN 'n/a'
             ELSE REPLACE(REPLACE(TRIM(cntry), '\r', ''), '\n', '')
         END AS cntry
     FROM bronze.erp_loc_a101;
